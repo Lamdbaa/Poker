@@ -1,5 +1,7 @@
-/* Cache hors connexion. Change le numéro de version après chaque mise à jour. */
-const CACHE = "jetons-v1";
+/* Cache hors connexion. La valeur ci-dessous est remplacée automatiquement
+   au déploiement (voir .github/workflows/pages.yml) par un identifiant basé
+   sur le commit, pour invalider le cache à chaque mise à jour. */
+const CACHE = "jetons-dev";
 const FILES = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (e) => {

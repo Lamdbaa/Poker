@@ -25,7 +25,11 @@ jobs:
       - name: Prepare site
         run: |
           mkdir -p site
-          cp index.html manifest.webmanifest sw.js icon-180.png icon-192.png icon-512.png site/
+          git ls-files | grep -vE '^(\.github/|README\.md$|LISEZ-MOI\.md$)' | while IFS= read -r f; do
+            mkdir -p "site/$(dirname "$f")"
+            cp "$f" "site/$f"
+          done
+          sed -i "s/^const CACHE = .*/const CACHE = \"jetons-${GITHUB_SHA::8}\";/" site/sw.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
