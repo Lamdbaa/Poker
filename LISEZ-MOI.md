@@ -47,9 +47,11 @@ Safari, et la suppression de l'app depuis l'écran d'accueil.
 
 ## Mettre l'app à jour plus tard
 
-Remplacer `index.html` dans le dépôt, et incrémenter le numéro de version dans
-`sw.js` (`const CACHE = "jetons-v2"`). Sans ce changement, le téléphone continue
-de servir l'ancienne version mise en cache.
+Remplacer `index.html` dans le dépôt (ou tout autre fichier du site). Le
+déploiement sur GitHub Pages se relance automatiquement, et la version du
+cache dans `sw.js` est recalculée à chaque déploiement : pas besoin de
+l'incrémenter à la main, les téléphones récupèrent la nouvelle version toute
+seuls.
 
 ## Autre option, sans compte
 
