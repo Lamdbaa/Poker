@@ -1,0 +1,31 @@
+{
+  "name": "Compteur de jetons",
+  "short_name": "Jetons",
+  "description": "Compteur de jetons pour parties de poker entre amis",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#04100C",
+  "theme_color": "#0E3227",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
