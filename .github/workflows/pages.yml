@@ -22,14 +22,28 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build index.html from source
+        run: |
+          npm ci
+          npm run build
       - name: Prepare site
         run: |
           mkdir -p site
-          git ls-files | grep -vE '^(\.github/|README\.md$|LISEZ-MOI\.md$)' | while IFS= read -r f; do
-            mkdir -p "site/$(dirname "$f")"
-            cp "$f" "site/$f"
-          done
+          # tout ce qui est suivi par git sauf la doc, la CI et les fichiers de build
+          git ls-files \
+            | grep -vE '^\.github/' \
+            | grep -vE '^(README|LISEZ-MOI)\.md$' \
+            | grep -vE '^(package\.json|package-lock\.json|build\.mjs|template\.html|main\.jsx|compteur-poker\.jsx|\.gitignore)$' \
+            | while IFS= read -r f; do
+                mkdir -p "site/$(dirname "$f")"
+                cp "$f" "site/$f"
+              done
           sed -i "s/^const CACHE = .*/const CACHE = \"jetons-${GITHUB_SHA::8}\";/" site/sw.js
+          ls -l site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

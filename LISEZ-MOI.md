@@ -45,13 +45,31 @@ Trois choses effacent la partie, à éviter en cours de tournoi : le mode de
 navigation privée, « Effacer historique et données de site » dans les réglages
 Safari, et la suppression de l'app depuis l'écran d'accueil.
 
-## Mettre l'app à jour plus tard
+## Modifier l'app
 
-Remplacer `index.html` dans le dépôt (ou tout autre fichier du site). Le
-déploiement sur GitHub Pages se relance automatiquement, et la version du
-cache dans `sw.js` est recalculée à chaque déploiement : pas besoin de
-l'incrémenter à la main, les téléphones récupèrent la nouvelle version toute
-seuls.
+Le code de l'app est dans `compteur-poker.jsx`. `index.html` en est la version
+compilée : on ne l'édite jamais à la main, on le régénère.
+
+```
+npm install     # une seule fois
+npm run build   # régénère index.html depuis compteur-poker.jsx
+```
+
+Ensuite, commit de `compteur-poker.jsx` **et** de `index.html`, puis push sur
+`main` : le déploiement se relance tout seul. Le déploiement recompile lui aussi
+depuis la source, donc c'est bien le `.jsx` qui fait foi.
+
+La version du cache dans `sw.js` est recalculée à chaque déploiement : pas
+besoin de l'incrémenter à la main, les téléphones récupèrent la nouvelle
+version tout seuls.
+
+## Les règles de mise
+
+Une main se joue avec un seul pot, jamais de pot secondaire. Dès qu'un joueur
+est à tapis, sa mise sert de plafond : les autres ne peuvent que suivre ce
+montant (ou moins s'il ne leur reste pas assez) ou se coucher, et plus personne
+ne peut relancer jusqu'à la fin de la main. Un joueur trop court pour couvrir le
+plafond met ce qu'il lui reste et joue quand même le pot entier.
 
 ## Autre option, sans compte
 

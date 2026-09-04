@@ -1,0 +1,14 @@
+{
+  "name": "compteur-jetons",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Compteur de jetons pour parties de poker entre amis",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  }
+}
